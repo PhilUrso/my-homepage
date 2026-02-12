@@ -42,7 +42,6 @@ body {
 }
 
 .profile-photo {
-    display: inline-block;
     width: 200px;
     height: 200px;
     border-radius: 50%;
@@ -50,16 +49,28 @@ body {
     border: 5px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     background: rgba(255, 255, 255, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin: 0 auto;
+    position: relative;
 }
 
 .profile-photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
+}
+
+/* Fallback placeholder - only shows if image fails to load */
+.profile-photo::before {
+    content: "Photo Loading...";
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
 }
 
 /* Placeholder styling when no image is loaded */
