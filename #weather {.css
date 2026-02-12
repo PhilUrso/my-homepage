@@ -1,0 +1,11 @@
+#weather {
+    padding: 1rem;
+    background: red !important; /* Temporary - make it obvious */
+    border-radius: 8px;
+    display: inline-block;
+    font-family: sans-serif;
+    font-size: 1.1rem;
+    color: white !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
