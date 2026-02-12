@@ -178,3 +178,24 @@ body {
         transform: translateX(-33.33%);
     }
 }
+
+/* Weather widget styles */
+.weather-section {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+#weather {
+    padding: 1rem;
+    background: #f0f4ff;
+    border-radius: 8px;
+    display: inline-block;
+    font-family: sans-serif;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+#weather:hover {
+    transform: translateY(-2px);
+}

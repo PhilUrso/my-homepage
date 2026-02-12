@@ -13,6 +13,11 @@
             <p>Welcome to my homepage</p>
         </div>
         
+        <!-- Add weather widget here -->
+        <div class="weather-section">
+            <div id="weather">Loading weather...</div>
+        </div>
+        
         <div class="profile-section">
             <div class="profile-photo">
                 <img src="Phil.jpg" alt="Profile photo" id="profile-img">
@@ -37,5 +42,19 @@
             <img src="photos/CC.jpg" alt="Photo CC">
         </div>
     </div>
+
+    <script>
+        async function loadWeather() {
+            const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=47.6062&longitude=-122.3321&current=temperature_2m,weather_code');
+            const data = await res.json();
+            const temp = data.current.temperature_2m;
+            document.getElementById('weather').textContent = `Seattle: ${temp}°C`;
+        }
+
+        loadWeather().catch(err => {
+            document.getElementById('weather').textContent = 'Failed to load weather';
+            console.error(err);
+        });
+    </script>
 </body>
 </html>
