@@ -152,17 +152,19 @@ body {
     display: flex;
     animation: scroll 20s linear infinite;
     height: 100%;
+    width: 300%;
 }
 
 .photo-strip img {
     height: 100%;
-    width: auto;
+    width: calc(100vw / 3);
     object-fit: cover;
-    margin-right: 10px;
-    border-radius: 5px;
+    margin-right: 0;
+    border-radius: 0;
     opacity: 0.8;
     transition: opacity 0.3s ease;
 }
+
 
 .photo-strip img:hover {
     opacity: 1;
