@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Homepage</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="intro-section">
+            <h1>Hello World!</h1>
+            <p>Welcome to my homepage</p>
+        </div>
+        
+        <!-- Add weather widget here -->
+        <div class="weather-section">
+            <div id="weather">Loading weather...</div>
+        </div>
+        
+        <div class="profile-section">
+            <div class="profile-photo">
+                <img src="Phil.jpg" alt="Profile photo" id="profile-img">
+            </div>
+        </div>
+        
+        <div class="contact-section">
+            <button class="contact-btn" onclick="alert('Contact feature coming soon!')">Contact Me</button>
+        </div>
+    </div>
+    
+    <div class="photo-strip">
+        <div class="photo-strip-container">
+            <img src="photos/AA.jpg" alt="Photo AA">
+            <img src="photos/BB.jpg" alt="Photo BB">
+            <img src="photos/CC.jpg" alt="Photo CC">
+            <img src="photos/AA.jpg" alt="Photo AA">
+            <img src="photos/BB.jpg" alt="Photo BB">
+            <img src="photos/CC.jpg" alt="Photo CC">
+            <img src="photos/AA.jpg" alt="Photo AA">
+            <img src="photos/BB.jpg" alt="Photo BB">
+            <img src="photos/CC.jpg" alt="Photo CC">
+        </div>
+    </div>
+
+    <script>
+        async function loadWeather() {
+            const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=47.6062&longitude=-122.3321&current=temperature_2m,weather_code');
+            const data = await res.json();
+            const temp = data.current.temperature_2m;
+            document.getElementById('weather').textContent = `Seattle: ${temp}°C`;
+        }
+
+        loadWeather().catch(err => {
+            document.getElementById('weather').textContent = 'Failed to load weather';
+            console.error(err);
+        });
+    </script>
+</body>
+</html>
