@@ -121,6 +121,34 @@ body {
     transform: translateY(0);
 }
 
+/* Music Widget */
+.music-section {
+    margin-top: 40px;
+    width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.music-title {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.music-widget {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.music-widget iframe {
+    display: block;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
     .intro-section h1 {
