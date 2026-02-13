@@ -185,18 +185,64 @@ body {
     text-align: center;
 }
 
-#weather {
-    padding: 1rem 2rem;
-    background: rgba(255, 255, 255, 0.9); /* More opaque white background */
-    color: #333; /* Dark text */
-    border-radius: 8px;
-    display: inline-block;
-    font-family: sans-serif;
-    font-size: 1.1rem;
+.weather-title {
+    font-size: 1.2rem;
     font-weight: 500;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.forecast-container {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.forecast-day {
+    padding: 0.8rem 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    border-radius: 12px;
+    font-family: sans-serif;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     transition: transform 0.2s ease;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    min-width: 70px;
+    text-align: center;
+}
+
+.forecast-day:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+.day-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    color: #555;
+}
+
+.weather-icon {
+    font-size: 1.8rem;
+    margin: 0.3rem 0;
+}
+
+.temps {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.high {
+    color: #e74c3c;
+    font-weight: 600;
+}
+
+.low {
+    color: #3498db;
+    font-weight: 500;
 }
 
 #weather:hover {

@@ -33,7 +33,8 @@
         
         <!-- Add weather widget here -->
         <div class="weather-section">
-            <div id="weather">Loading weather...</div>
+            <h3 class="weather-title">Columbus, OH - 5 Day Forecast</h3>
+            <div id="weather" class="forecast-container">Loading weather...</div>
         </div>
         
         <div class="profile-section">
@@ -63,10 +64,43 @@
 
     <script>
         async function loadWeather() {
-            const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=39.9612&longitude=-82.9988&current=temperature_2m,weather_code&temperature_unit=fahrenheit');
+            const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=39.9612&longitude=-82.9988&daily=temperature_2m_max,temperature_2m_min,weather_code&temperature_unit=fahrenheit&timezone=America/New_York');
             const data = await res.json();
-            const temp = data.current.temperature_2m;
-            document.getElementById('weather').textContent = `Columbus, OH: ${temp}°F`;
+            
+            const weatherIcons = {
+                0: '☀️', 1: '🌤️', 2: '⛅', 3: '☁️',
+                45: '🌫️', 48: '🌫️',
+                51: '🌧️', 53: '🌧️', 55: '🌧️',
+                61: '🌧️', 63: '🌧️', 65: '🌧️',
+                71: '🌨️', 73: '🌨️', 75: '🌨️',
+                80: '🌦️', 81: '🌦️', 82: '🌦️',
+                95: '⛈️', 96: '⛈️', 99: '⛈️'
+            };
+            
+            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            
+            let forecastHTML = '';
+            for (let i = 0; i < 5; i++) {
+                const date = new Date(data.daily.time[i]);
+                const dayName = days[date.getDay()];
+                const high = Math.round(data.daily.temperature_2m_max[i]);
+                const low = Math.round(data.daily.temperature_2m_min[i]);
+                const code = data.daily.weather_code[i];
+                const icon = weatherIcons[code] || '🌡️';
+                
+                forecastHTML += `
+                    <div class="forecast-day">
+                        <div class="day-name">${dayName}</div>
+                        <div class="weather-icon">${icon}</div>
+                        <div class="temps">
+                            <span class="high">${high}°</span>
+                            <span class="low">${low}°</span>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            document.getElementById('weather').innerHTML = forecastHTML;
         }
 
         loadWeather().catch(err => {
