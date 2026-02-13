@@ -203,3 +203,156 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(0,0,0,0.3);
 }
+
+/* Animated Background Elements */
+.animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+/* Cloud Animations */
+.cloud {
+    position: absolute;
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    animation: float 20s infinite linear;
+    opacity: 0.7;
+}
+
+.cloud-1 {
+    top: 10%;
+    font-size: 4rem;
+    animation: float 25s infinite linear reverse;
+    animation-delay: -3s;
+}
+
+.cloud-2 {
+    top: 20%;
+    font-size: 3.5rem;
+    animation: float 30s infinite linear;
+    animation-delay: -10s;
+}
+
+.cloud-3 {
+    top: 15%;
+    font-size: 2.5rem;
+    animation: float 22s infinite linear reverse;
+    animation-delay: -15s;
+}
+
+.cloud-4 {
+    top: 35%;
+    font-size: 3rem;
+    animation: float 28s infinite linear;
+    animation-delay: -5s;
+}
+
+.cloud-5 {
+    top: 5%;
+    font-size: 2rem;
+    animation: float 35s infinite linear reverse;
+    animation-delay: -20s;
+}
+
+.cloud-6 {
+    top: 40%;
+    font-size: 3.2rem;
+    animation: float 26s infinite linear;
+    animation-delay: -12s;
+}
+
+/* Spaceship Animations */
+.spaceship {
+    position: absolute;
+    font-size: 2.5rem;
+    animation: fly 15s infinite linear;
+    opacity: 0.9;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+}
+
+.spaceship-1 {
+    top: 25%;
+    animation: fly 18s infinite linear;
+    animation-delay: -2s;
+}
+
+.spaceship-2 {
+    top: 45%;
+    font-size: 2rem;
+    animation: fly 12s infinite linear reverse;
+    animation-delay: -7s;
+}
+
+.spaceship-3 {
+    top: 60%;
+    font-size: 3rem;
+    animation: fly 20s infinite linear;
+    animation-delay: -14s;
+}
+
+.spaceship-4 {
+    top: 30%;
+    font-size: 2.2rem;
+    animation: fly 16s infinite linear reverse;
+    animation-delay: -9s;
+}
+
+.spaceship-5 {
+    top: 55%;
+    font-size: 2.8rem;
+    animation: fly 14s infinite linear;
+    animation-delay: -4s;
+}
+
+/* Keyframe Animations */
+@keyframes float {
+    0% {
+        transform: translateX(-10rem);
+    }
+    100% {
+        transform: translateX(calc(100vw + 10rem));
+    }
+}
+
+@keyframes fly {
+    0% {
+        transform: translateX(-10rem) scale(1);
+    }
+    50% {
+        transform: translateX(calc(50vw)) scale(1.1);
+    }
+    100% {
+        transform: translateX(calc(100vw + 10rem)) scale(1);
+    }
+}
+
+/* Add some twinkling stars */
+.animated-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.9), transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.7), transparent),
+        radial-gradient(2px 2px at 160px 30px, rgba(255, 255, 255, 0.8), transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: twinkle 4s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.3; }
+    100% { opacity: 0.8; }
+}
