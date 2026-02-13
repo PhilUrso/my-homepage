@@ -51,15 +51,7 @@
         <div class="music-section">
             <h3 class="music-title">🎸 Now Playing: Phish</h3>
             <div class="music-widget fade-in">
-                <iframe 
-                    width="100%" 
-                    height="200" 
-                    src="https://www.youtube.com/embed/Hr2Ny3lFmfg?start=295" 
-                    title="Phish" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
+                <div id="phish-player"></div>
             </div>
         </div>
     </div>
@@ -79,6 +71,56 @@
     </div>
 
     <script>
+        // YouTube IFrame API
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        var volumeFadeInterval;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('phish-player', {
+                height: '200',
+                width: '100%',
+                videoId: 'Hr2Ny3lFmfg',
+                playerVars: {
+                    'start': 295,
+                    'enablejsapi': 1
+                },
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerStateChange(event) {
+            // When video starts playing (state = 1)
+            if (event.data === YT.PlayerState.PLAYING) {
+                fadeInVolume();
+            }
+        }
+
+        function fadeInVolume() {
+            // Clear any existing fade interval
+            if (volumeFadeInterval) clearInterval(volumeFadeInterval);
+            
+            // Start at 0 volume
+            player.setVolume(0);
+            let currentVolume = 0;
+            
+            // Gradually increase volume over 3 seconds
+            volumeFadeInterval = setInterval(() => {
+                currentVolume += 2;
+                if (currentVolume >= 100) {
+                    currentVolume = 100;
+                    clearInterval(volumeFadeInterval);
+                }
+                player.setVolume(currentVolume);
+            }, 60); // 50 steps over 3 seconds
+        }
+
         async function loadWeather() {
             const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=39.9612&longitude=-82.9988&daily=temperature_2m_max,temperature_2m_min,weather_code&temperature_unit=fahrenheit&timezone=America/New_York');
             const data = await res.json();
